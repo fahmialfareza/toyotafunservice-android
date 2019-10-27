@@ -3,4 +3,12 @@
     <string name="home">Home</string>
     <string name="notification">Notification</string>
     <string name="chatbot">Chatbot</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="book_service">Book Service</string>
+    <string name="emergency_call">Emergency Call</string>
+    <string name="service_tutorial">Service Tutorial</string>
+    <string name="service_info">Service Info</string>
+    <string name="pay_service">Pay Service</string>
 </resources>
