@@ -11,4 +11,6 @@
     <string name="service_tutorial">Service Tutorial</string>
     <string name="service_info">Service Info</string>
     <string name="pay_service">Pay Service</string>
+    <string name="slider_image">Slider Image</string>
+    <string name="default_ads_sentences">Kemudahan Servis Kendaraan Ada dalam Smartphone Anda</string>
 </resources>
