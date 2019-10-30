@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "8531153622",
+    "firebase_url": "https://toyotafuncof.firebaseio.com",
+    "project_id": "toyotafuncof",
+    "storage_bucket": "toyotafuncof.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:8531153622:android:b6ae9f137b88d4523bef77",
+        "android_client_info": {
+          "package_name": "com.dinokeylas.toyotafunservice"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "8531153622-0vllqrpbujh1gledt67f765hfvevedpu.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDwCGuztY7WF9H4CK1LonkrwF5K-0bql5o"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "8531153622-0vllqrpbujh1gledt67f765hfvevedpu.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,6 +1,7 @@
 package com.dinokeylas.toyotafunservice
 
 import android.content.Context
+import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.os.Handler
@@ -8,8 +9,11 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.cardview.widget.CardView
 import androidx.viewpager.widget.ViewPager
 import com.viewpagerindicator.CirclePageIndicator
+import kotlinx.android.synthetic.main.fragment_home.*
 import java.util.*
 import kotlin.collections.ArrayList
 
@@ -36,6 +40,18 @@ class HomeFragment : Fragment() {
 
         //set the indicator
         setIndicator()
+
+        val cvBooking: CardView = view.findViewById(R.id.cv_booking)
+        val cvServiceInfo: CardView = view.findViewById(R.id.cv_service_info)
+        val cvPayService: CardView = view.findViewById(R.id.cv_pay_service)
+        val cvServiceTutorial: CardView = view.findViewById(R.id.cv_service_tutorial)
+        val cvEmergencyCall: CardView = view.findViewById(R.id.cv_emergency_call)
+
+        cvBooking.setOnClickListener {  }
+        cvServiceInfo.setOnClickListener {  }
+        cvPayService.setOnClickListener {  }
+        cvServiceTutorial.setOnClickListener {  }
+        cvEmergencyCall.setOnClickListener { startActivity(Intent(context, EmergencyCallActivity::class.java)) }
 
         return view
     }
@@ -64,7 +80,6 @@ class HomeFragment : Fragment() {
 
         //Set circle indicator radius
         indicator.setRadius(5 * density)
-
         NUM_PAGES = imageModelArrayList!!.size
 
         // Auto start of viewpager
@@ -89,14 +104,8 @@ class HomeFragment : Fragment() {
             override fun onPageSelected(position: Int) {
                 currentPage = position
             }
-
-            override fun onPageScrolled(pos: Int, arg1: Float, arg2: Int) {
-
-            }
-
-            override fun onPageScrollStateChanged(pos: Int) {
-
-            }
+            override fun onPageScrolled(pos: Int, arg1: Float, arg2: Int) {  }
+            override fun onPageScrollStateChanged(pos: Int) {  }
         })
     }
 }
