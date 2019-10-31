@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".HomeFragment">
+    tools:context=".view.HomeFragment">
 
     <RelativeLayout
         android:layout_width="fill_parent"
@@ -15,7 +15,7 @@
         <androidx.viewpager.widget.ViewPager
             android:id="@+id/pager"
             android:layout_width="fill_parent"
-            android:layout_height="250dp"
+            android:layout_height="225dp"
             android:layout_alignParentTop="true" />
 
         <com.viewpagerindicator.CirclePageIndicator
@@ -23,7 +23,7 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="215dp"
+            android:layout_marginTop="190dp"
             android:padding="10dip"
             app:centered="true"
             app:fillColor="@color/colorPrimaryDark"

@@ -1,11 +1,13 @@
-package com.dinokeylas.toyotafunservice
+package com.dinokeylas.toyotafunservice.view
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import androidx.fragment.app.Fragment
-import com.dinokeylas.toyotafunservice.view.ProfileFragment
+import com.dinokeylas.toyotafunservice.ChatBotFragment
+import com.dinokeylas.toyotafunservice.NotificationFragment
+import com.dinokeylas.toyotafunservice.R
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class HomeActivity : AppCompatActivity() {

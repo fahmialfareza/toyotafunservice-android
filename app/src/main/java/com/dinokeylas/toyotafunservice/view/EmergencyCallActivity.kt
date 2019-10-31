@@ -11,7 +11,6 @@ import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.dinokeylas.toyotafunservice.HomeActivity
 import com.dinokeylas.toyotafunservice.R
 import com.dinokeylas.toyotafunservice.adapter.EmergencyCallAdapter
 import com.dinokeylas.toyotafunservice.model.EmergencyCall

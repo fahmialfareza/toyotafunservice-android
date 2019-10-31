@@ -1,4 +1,4 @@
-package com.dinokeylas.toyotafunservice
+package com.dinokeylas.toyotafunservice.view
 
 import android.content.Intent
 import android.os.Bundle
@@ -9,9 +9,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.cardview.widget.CardView
 import androidx.viewpager.widget.ViewPager
+import com.dinokeylas.toyotafunservice.R
 import com.dinokeylas.toyotafunservice.adapter.SliderImageAdapter
 import com.dinokeylas.toyotafunservice.model.SliderModel
-import com.dinokeylas.toyotafunservice.view.EmergencyCallActivity
 import com.viewpagerindicator.CirclePageIndicator
 import java.util.*
 import kotlin.collections.ArrayList
@@ -49,7 +49,7 @@ class HomeFragment : Fragment() {
         val cvServiceTutorial: CardView = view.findViewById(R.id.cv_service_tutorial)
         val cvEmergencyCall: CardView = view.findViewById(R.id.cv_emergency_call)
 
-        cvBooking.setOnClickListener {  }
+        cvBooking.setOnClickListener { startActivity(Intent(context, ServiceBookingActivity::class.java)) }
         cvServiceInfo.setOnClickListener {  }
         cvPayService.setOnClickListener {  }
         cvServiceTutorial.setOnClickListener {  }
@@ -64,7 +64,11 @@ class HomeFragment : Fragment() {
     }
 
     private fun populateList(): ArrayList<SliderModel> {
-        val imageList = intArrayOf(R.drawable.place, R.drawable.place, R.drawable.default_icon)
+        val imageList = intArrayOf(
+            R.drawable.place,
+            R.drawable.place,
+            R.drawable.default_icon
+        )
         val list = ArrayList<SliderModel>()
 
         for (i in 0..2) {

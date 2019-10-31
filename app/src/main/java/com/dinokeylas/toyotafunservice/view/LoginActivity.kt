@@ -6,7 +6,6 @@ import android.os.Bundle
 import android.util.Patterns
 import android.view.View
 import android.widget.Toast
-import com.dinokeylas.toyotafunservice.HomeActivity
 import com.dinokeylas.toyotafunservice.R
 import com.dinokeylas.toyotafunservice.contract.LoginContract
 import com.dinokeylas.toyotafunservice.presenter.LoginPresenter
