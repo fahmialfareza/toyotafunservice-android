@@ -35,6 +35,8 @@ dependencies {
         exclude module: 'support-v4'
     }
 
+    implementation 'com.google.firebase:firebase-core:17.2.1'
+    implementation 'com.google.firebase:firebase-database:19.2.0'
     implementation 'com.google.firebase:firebase-auth:19.1.0'
     implementation 'com.google.firebase:firebase-firestore:21.2.1'
     implementation 'com.google.firebase:firebase-storage:19.1.0'
