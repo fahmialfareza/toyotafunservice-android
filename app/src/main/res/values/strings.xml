@@ -29,4 +29,14 @@
     <string name="login">Login</string>
     <string name="lupa_kata_sandi">Lupa Kata Sandi?</string>
     <string name="belum_punya_akun">Belum Punya Akun? Daftar Disini</string>
+    <string name="akun_anda">Akun Anda</string>
+    <string name="saldo_anda">Saldo Anda</string>
+    <string name="rp_0">Rp 0</string>
+    <string name="tambah">Tambah</string>
+    <string name="riwayat">Riwayat</string>
+    <string name="user_name">User Name</string>
+    <string name="edit_profile">Edit Profile</string>
+    <string name="location">Location</string>
+    <string name="lokasi">Lokasi</string>
+    <string name="logout">Logout</string>
 </resources>
