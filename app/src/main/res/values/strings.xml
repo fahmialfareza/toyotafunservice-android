@@ -13,4 +13,7 @@
     <string name="pay_service">Pay Service</string>
     <string name="slider_image">Slider Image</string>
     <string name="default_ads_sentences">Kemudahan Servis Kendaraan Ada dalam Smartphone Anda</string>
+    <string name="phone_number">phone number</string>
+    <string name="name">name</string>
+    <string name="call">call</string>
 </resources>
