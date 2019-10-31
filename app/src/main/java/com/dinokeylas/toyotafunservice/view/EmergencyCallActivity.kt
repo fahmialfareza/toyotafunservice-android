@@ -1,4 +1,4 @@
-package com.dinokeylas.toyotafunservice
+package com.dinokeylas.toyotafunservice.view
 
 import android.Manifest
 import android.content.Intent
@@ -6,12 +6,15 @@ import android.content.pm.PackageManager
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import android.widget.Toast
 import androidx.appcompat.widget.Toolbar
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.dinokeylas.toyotafunservice.HomeActivity
+import com.dinokeylas.toyotafunservice.R
+import com.dinokeylas.toyotafunservice.adapter.EmergencyCallAdapter
+import com.dinokeylas.toyotafunservice.model.EmergencyCall
 import com.dinokeylas.toyotafunservice.util.Constant.Collection
 import com.google.firebase.firestore.FirebaseFirestore
 import java.util.*
@@ -47,7 +50,8 @@ class EmergencyCallActivity : AppCompatActivity() {
             .addOnSuccessListener { documents ->
                 if(documents!=null){
                     for (document in documents) {
-                        val emergencyCall: EmergencyCall? = document.toObject(EmergencyCall::class.java)
+                        val emergencyCall: EmergencyCall? = document.toObject(
+                            EmergencyCall::class.java)
                         list.add(emergencyCall!!)
                     }
                     adapter.notifyDataSetChanged()

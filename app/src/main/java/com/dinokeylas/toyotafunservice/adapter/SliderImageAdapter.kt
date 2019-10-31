@@ -1,4 +1,4 @@
-package com.dinokeylas.toyotafunservice
+package com.dinokeylas.toyotafunservice.adapter
 
 import android.content.Context
 import android.os.Parcelable
@@ -7,6 +7,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.viewpager.widget.PagerAdapter
+import com.dinokeylas.toyotafunservice.R
+import com.dinokeylas.toyotafunservice.model.SliderModel
 
 class SliderImageAdapter (context: Context, private val imageModelArrayList: ArrayList<SliderModel>): PagerAdapter(){
 

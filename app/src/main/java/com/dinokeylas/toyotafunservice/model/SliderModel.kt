@@ -1,4 +1,4 @@
-package com.dinokeylas.toyotafunservice
+package com.dinokeylas.toyotafunservice.model
 
 class SliderModel {
     private var image: Int = 0

@@ -1,4 +1,4 @@
-package com.dinokeylas.toyotafunservice
+package com.dinokeylas.toyotafunservice.adapter
 
 import android.content.Context
 import android.content.Intent
@@ -9,11 +9,19 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
+import com.dinokeylas.toyotafunservice.model.EmergencyCall
+import com.dinokeylas.toyotafunservice.R
 
 class EmergencyCallAdapter(private val context: Context, private val list: ArrayList<EmergencyCall>): RecyclerView.Adapter<EmergencyCallAdapter.ItemViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemViewHolder {
-        return ItemViewHolder(LayoutInflater.from(context).inflate(R.layout.layout_emergency_call, parent, false))
+        return ItemViewHolder(
+            LayoutInflater.from(context).inflate(
+                R.layout.layout_emergency_call,
+                parent,
+                false
+            )
+        )
     }
 
     override fun getItemCount() = list.size

@@ -16,4 +16,17 @@
     <string name="phone_number">phone number</string>
     <string name="name">name</string>
     <string name="call">call</string>
+    <string name="daftar">Daftar</string>
+    <string name="nama_lengkap">Nama Lengkap</string>
+    <string name="email">Email</string>
+    <string name="alamat">Alamat</string>
+    <string name="nomor_telepon">Nomor Telepon</string>
+    <string name="kata_sandi">Kata Sandi</string>
+    <string name="ulangi_kata_sandi">Ulangi Kata Sandi</string>
+    <string name="sudah_punya_akun">Sudah Punya Akun? Login Disini</string>
+    <string name="logo">Logo</string>
+    <string name="alamat_email">Alamat Email</string>
+    <string name="login">Login</string>
+    <string name="lupa_kata_sandi">Lupa Kata Sandi?</string>
+    <string name="belum_punya_akun">Belum Punya Akun? Daftar Disini</string>
 </resources>
