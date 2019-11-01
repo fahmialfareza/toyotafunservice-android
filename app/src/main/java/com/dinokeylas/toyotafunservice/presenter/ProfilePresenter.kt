@@ -5,6 +5,10 @@ import com.dinokeylas.toyotafunservice.contract.ProfileContract
 import com.dinokeylas.toyotafunservice.model.User
 import com.dinokeylas.toyotafunservice.util.Constant.Collection
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
 import com.google.firebase.firestore.FirebaseFirestore
 
 class ProfilePresenter(_view: ProfileContract.View): ProfileContract.Presenter {
@@ -16,24 +20,22 @@ class ProfilePresenter(_view: ProfileContract.View): ProfileContract.Presenter {
     }
 
     override fun loadUserData() {
-        val firebaseFirestore = FirebaseFirestore.getInstance()
+        val db = FirebaseDatabase.getInstance().reference
         val mUser = FirebaseAuth.getInstance().currentUser
         val userId = mUser?.uid
 
-//        view.showProgressBar()
-        firebaseFirestore.collection(Collection.USER).document(userId ?: "user").get()
-            .addOnSuccessListener {document ->
-                if(document!=null){
-                    val user: User? = document.toObject(User::class.java)
-                    fillUserDataToLayout(user)
-                } else {
-                    //show toast message
-                    Log.d("USER-DATA", "fail to catch user data")
-                }
-            }.addOnFailureListener {
-                //show toast message
-                Log.d("USER-DATA", "failure catch data from firebase")
+        val dateListener = object : ValueEventListener {
+            override fun onCancelled(p0: DatabaseError) {
+                println("loadPost:onCancelled ${p0.toException()}")
             }
+
+            override fun onDataChange(dataSnapshot: DataSnapshot) {
+                val user: User? = dataSnapshot.getValue(User::class.java)
+                fillUserDataToLayout(user)
+            }
+        }
+        //get child data
+        db.child(Collection.USER).child(userId ?: "user").addListenerForSingleValueEvent(dateListener)
     }
 
     override fun fillUserDataToLayout(user: User?) {

@@ -6,6 +6,7 @@ import android.content.pm.PackageManager
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.widget.Toast
 import androidx.appcompat.widget.Toolbar
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
@@ -14,7 +15,12 @@ import androidx.recyclerview.widget.RecyclerView
 import com.dinokeylas.toyotafunservice.R
 import com.dinokeylas.toyotafunservice.adapter.EmergencyCallAdapter
 import com.dinokeylas.toyotafunservice.model.EmergencyCall
+import com.dinokeylas.toyotafunservice.model.User
 import com.dinokeylas.toyotafunservice.util.Constant.Collection
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
 import com.google.firebase.firestore.FirebaseFirestore
 import java.util.*
 import kotlin.collections.ArrayList
@@ -44,23 +50,25 @@ class EmergencyCallActivity : AppCompatActivity() {
         adapter = EmergencyCallAdapter(this, list)
         recyclerView.adapter = adapter
 
-        val firebaseFirestore = FirebaseFirestore.getInstance()
-        firebaseFirestore.collection(Collection.EMERGENCY_CALL).get()
-            .addOnSuccessListener { documents ->
-                if(documents!=null){
-                    for (document in documents) {
-                        val emergencyCall: EmergencyCall? = document.toObject(
-                            EmergencyCall::class.java)
+
+        val db = FirebaseDatabase.getInstance().reference
+        // Read from the database
+        db.child(Collection.EMERGENCY_CALL).addListenerForSingleValueEvent(object : ValueEventListener {
+            override fun onDataChange(dataSnapshot: DataSnapshot) {
+                if (dataSnapshot.hasChildren()){
+                    for(data in dataSnapshot.children){
+                        val emergencyCall: EmergencyCall? = data.getValue(EmergencyCall::class.java)
                         list.add(emergencyCall!!)
                     }
                     adapter.notifyDataSetChanged()
-                } else {
-                    Log.d("CALL-DATA", "fail to catch user data")
                 }
             }
-            .addOnFailureListener {
-                Log.d("CALL-DATA", it.toString())
+
+            override fun onCancelled(error: DatabaseError) {
+                // Failed to read value
+                Log.d("DATA-KU", "Failed to read value.", error.toException())
             }
+        })
     }
 
     private fun checkCallPermission(){
@@ -74,5 +82,10 @@ class EmergencyCallActivity : AppCompatActivity() {
     override fun onBackPressed() {
         super.onBackPressed()
             startActivity(Intent(this, HomeActivity::class.java))
+    }
+
+    override fun onSupportNavigateUp(): Boolean {
+        onBackPressed()
+        return true
     }
 }

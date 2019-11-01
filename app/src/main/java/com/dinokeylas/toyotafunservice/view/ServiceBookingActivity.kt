@@ -26,4 +26,9 @@ class ServiceBookingActivity : AppCompatActivity() {
         super.onBackPressed()
         startActivity(Intent(this, HomeActivity::class.java))
     }
+
+    override fun onSupportNavigateUp(): Boolean {
+        onBackPressed()
+        return true
+    }
 }

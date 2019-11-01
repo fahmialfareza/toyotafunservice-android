@@ -4,6 +4,7 @@ import com.dinokeylas.toyotafunservice.contract.RegisterContract
 import com.dinokeylas.toyotafunservice.model.User
 import com.dinokeylas.toyotafunservice.util.Constant.Collection
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.firestore.FirebaseFirestore
 
 class RegisterPresenter(_view: RegisterContract.View): RegisterContract.Presenter{
@@ -29,14 +30,16 @@ class RegisterPresenter(_view: RegisterContract.View): RegisterContract.Presente
 
     override fun saveData(user: User) {
         val mUser = FirebaseAuth.getInstance().currentUser
-        val fireStore = FirebaseFirestore.getInstance()
+        val db = FirebaseDatabase.getInstance().reference
         val userID = mUser?.uid
 
-        fireStore.collection(Collection.USER).document(userID ?: "default").set(user).addOnSuccessListener {
-            onRegisterSuccess()
-        }.addOnFailureListener {
-            onRegisterFailure()
-        }
+        db.child(Collection.USER).child(userID ?: "default").setValue(user)
+            .addOnSuccessListener {
+                onRegisterSuccess()
+            }
+            .addOnFailureListener {
+                onRegisterFailure()
+            }
     }
 
     override fun onRegisterSuccess() {
