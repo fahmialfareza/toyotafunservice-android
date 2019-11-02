@@ -45,6 +45,11 @@
     <string name="provinsi">Provinsi</string>
     <string name="tempat_service">Tempat Service</string>
     <string name="kota_kabupaten">Kota/Kabupaten</string>
+    <string name="nama_sampah">Nama Sampah</string>
+    <string name="layanan_tambahan">Layanan Tambahan</string>
+    <string name="keluhan">Keterangan/Keluhan</string>
+    <string name="book">Jadwalkan</string>
+    <string name="tuliskan_keluhan_anda_disini">Tuliskan keluhan Anda disini</string>
     <string-array name="province_array">
         <item>NTB</item>
         <item>NTT</item>

@@ -7,13 +7,17 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.format.DateFormat
+import android.util.Log
 import android.view.View
 import android.widget.*
 import androidx.appcompat.widget.Toolbar
 import com.dinokeylas.toyotafunservice.R
+import com.dinokeylas.toyotafunservice.adapter.PlusServiceAdapter
+import com.dinokeylas.toyotafunservice.model.PlusService
 import kotlinx.android.synthetic.main.activity_service_booking.*
 import java.text.SimpleDateFormat
 import java.util.*
+import kotlin.collections.ArrayList
 
 class ServiceBookingActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
 
@@ -52,6 +56,22 @@ class ServiceBookingActivity : AppCompatActivity(), AdapterView.OnItemSelectedLi
         btn_select_date.setOnClickListener { showDateDialog() }
         btn_select_time.setOnClickListener { showTimeDialog() }
 
+        val arr = ArrayList<PlusService>()
+        arr.add(PlusService("Soda", false))
+        arr.add(PlusService("Sprite", false))
+        arr.add(PlusService("Fanta", false))
+
+        val plusServiceAdapter = PlusServiceAdapter(this, R.layout.row_item_plus_service, arr)
+        lv_plus_service.adapter = plusServiceAdapter
+
+        btn_book.setOnClickListener {
+//            val data = plusServiceAdapter.getServicePlusList()
+//            for (i in data){
+//                Log.d("DATA", ""+i.checked)
+//            }
+
+
+        }
     }
 
     private fun initSpinner(){
