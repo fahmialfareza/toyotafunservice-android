@@ -39,4 +39,31 @@
     <string name="location">Location</string>
     <string name="lokasi">Lokasi</string>
     <string name="logout">Logout</string>
+    <string name="pilih_tanggal">Pilih Tanggal</string>
+    <string name="pilih_waktu">Pilih Waktu</string>
+    <string name="pilih_jadwal_service_anda">Pilih Jadwal Service Anda</string>
+    <string name="provinsi">Provinsi</string>
+    <string name="tempat_service">Tempat Service</string>
+    <string name="kota_kabupaten">Kota/Kabupaten</string>
+    <string-array name="province_array">
+        <item>NTB</item>
+        <item>NTT</item>
+        <item>Jawa Timur</item>
+        <item>Jawa Tengah</item>
+        <item>Jawa Barat</item>
+    </string-array>
+    <string-array name="city_array">
+        <item>Malang</item>
+        <item>Surabaya</item>
+        <item>Kediri</item>
+        <item>Mojokerto</item>
+        <item>Blitar</item>
+    </string-array>
+    <string-array name="location_array">
+        <item>Haha</item>
+        <item>HEHE</item>
+        <item>jjj</item>
+        <item>kkk</item>
+        <item>lll</item>
+    </string-array>
 </resources>
