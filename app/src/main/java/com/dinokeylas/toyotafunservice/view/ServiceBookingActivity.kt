@@ -7,13 +7,16 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.format.DateFormat
-import android.util.Log
 import android.view.View
 import android.widget.*
 import androidx.appcompat.widget.Toolbar
 import com.dinokeylas.toyotafunservice.R
 import com.dinokeylas.toyotafunservice.adapter.PlusServiceAdapter
+import com.dinokeylas.toyotafunservice.model.Bookings
 import com.dinokeylas.toyotafunservice.model.PlusService
+import com.dinokeylas.toyotafunservice.util.Constant.Collection
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.FirebaseDatabase
 import kotlinx.android.synthetic.main.activity_service_booking.*
 import java.text.SimpleDateFormat
 import java.util.*
@@ -22,14 +25,26 @@ import kotlin.collections.ArrayList
 class ServiceBookingActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
 
     lateinit var toolbar: Toolbar
+
+    //need to upload data
     private var province: String = "Pilih Provinsi"
     private var city: String = "Pilih Kota/Kabupaten"
-    private var location: String = "Pilih Bengkel"
-
+    private var garage: String = "Pilih Bengkel"
     private var hourOfDays = 0
     private var minutes = 0
-
     private lateinit var newDates: Calendar
+    private lateinit var date: String
+    private lateinit var time: String
+    private lateinit var additionalService: String
+    private lateinit var officer: String
+    private lateinit var complaint: String
+    private var estimation: Int = 0
+    private lateinit var component: String
+    private var waitingApproval: Boolean = false
+    private var totalCost: Double = 0.0
+    private lateinit var status: String
+
+    private lateinit var plusServiceAdapter: PlusServiceAdapter
     private lateinit var dateFormatter: SimpleDateFormat
     private lateinit var timeFormatter: SimpleDateFormat
     private var isDateAssigned: Boolean = false
@@ -61,17 +76,64 @@ class ServiceBookingActivity : AppCompatActivity(), AdapterView.OnItemSelectedLi
         arr.add(PlusService("Sprite", false))
         arr.add(PlusService("Fanta", false))
 
-        val plusServiceAdapter = PlusServiceAdapter(this, R.layout.row_item_plus_service, arr)
+        plusServiceAdapter = PlusServiceAdapter(this, R.layout.row_item_plus_service, arr)
         lv_plus_service.adapter = plusServiceAdapter
 
         btn_book.setOnClickListener {
-//            val data = plusServiceAdapter.getServicePlusList()
-//            for (i in data){
-//                Log.d("DATA", ""+i.checked)
-//            }
 
+            val mUser = FirebaseAuth.getInstance().currentUser
+
+            time = "$hourOfDays:$minutes"
+            date = dateFormatter.format(newDates.time)
+            additionalService = getAdditionalService()
+            officer = "Officer"
+            complaint = et_problem.text.toString().trim()
+            estimation = 0
+            component = "Component"
+            waitingApproval = false
+            totalCost = 0.0
+            status = "Booked"
+
+            val bookings = Bookings(
+                mUser!!.uid,
+                date,
+                time,
+                province,
+                city,
+                garage,
+                additionalService,
+                officer,
+                complaint,
+                estimation,
+                component,
+                waitingApproval,
+                totalCost,
+                status
+            )
+
+            val db = FirebaseDatabase.getInstance().reference
+            db.child(Collection.BOOKINGS).push().setValue(bookings).addOnSuccessListener {
+                val toast = Toast.makeText(this, "Berhasil", Toast.LENGTH_SHORT)
+                toast.show()
+            }. addOnFailureListener {
+                val toast = Toast.makeText(this, "Gagal", Toast.LENGTH_SHORT)
+                toast.show()
+            }
 
         }
+    }
+
+    private fun getAdditionalService(): String {
+
+        additionalService = ""
+        val data = plusServiceAdapter.getServicePlusList()
+            for (i in data){
+                if(i.checked){
+                    additionalService += i.name + ","
+                }
+            }
+
+        return additionalService
     }
 
     private fun initSpinner(){
@@ -99,15 +161,15 @@ class ServiceBookingActivity : AppCompatActivity(), AdapterView.OnItemSelectedLi
         when(parent?.id){
             R.id.spinner_province -> province = item
             R.id.spinner_city -> city = item
-            R.id.spinner_location -> location = item
+            R.id.spinner_location -> garage = item
         }
-        val temp: String = ("$province $city $location")
+        val temp: String = ("$province $city $garage")
         val toast = Toast.makeText(this, temp, Toast.LENGTH_SHORT)
         toast.show()
     }
 
     override fun onNothingSelected(p0: AdapterView<*>?) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+
     }
 
     private fun showDateDialog(){
@@ -129,7 +191,7 @@ class ServiceBookingActivity : AppCompatActivity(), AdapterView.OnItemSelectedLi
         datePickerDialog.show()
     }
 
-    fun showTimeDialog(){
+    private fun showTimeDialog(){
         val calendar = Calendar.getInstance()
         val timePickerDialog = TimePickerDialog(
             this,
