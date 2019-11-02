@@ -2,6 +2,8 @@ package com.dinokeylas.toyotafunservice.model
 
 data class Bookings (
     var userId: String,
+    var userEmail: String,
+    var userName: String,
     var date: String,
     var time: String,
     var province: String,

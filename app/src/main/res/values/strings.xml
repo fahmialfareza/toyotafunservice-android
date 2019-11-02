@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Toyota Fun Service</string>
+    <string name="app_name">Fun Service</string>
     <string name="home">Home</string>
     <string name="notification">Notification</string>
     <string name="chatbot">Chatbot</string>

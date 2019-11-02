@@ -7,16 +7,23 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.format.DateFormat
+import android.util.Log
 import android.view.View
 import android.widget.*
 import androidx.appcompat.widget.Toolbar
 import com.dinokeylas.toyotafunservice.R
 import com.dinokeylas.toyotafunservice.adapter.PlusServiceAdapter
 import com.dinokeylas.toyotafunservice.model.Bookings
+import com.dinokeylas.toyotafunservice.model.EmergencyCall
 import com.dinokeylas.toyotafunservice.model.PlusService
+import com.dinokeylas.toyotafunservice.model.User
 import com.dinokeylas.toyotafunservice.util.Constant.Collection
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseUser
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
 import kotlinx.android.synthetic.main.activity_service_booking.*
 import java.text.SimpleDateFormat
 import java.util.*
@@ -48,6 +55,8 @@ class ServiceBookingActivity : AppCompatActivity(), AdapterView.OnItemSelectedLi
     private lateinit var dateFormatter: SimpleDateFormat
     private lateinit var timeFormatter: SimpleDateFormat
     private var isDateAssigned: Boolean = false
+    private lateinit var userModel: User
+    private var mUser: FirebaseUser? = null
 
     @SuppressLint("SimpleDateFormat")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -81,50 +90,70 @@ class ServiceBookingActivity : AppCompatActivity(), AdapterView.OnItemSelectedLi
 
         btn_book.setOnClickListener {
 
-            val mUser = FirebaseAuth.getInstance().currentUser
+            mUser = FirebaseAuth.getInstance().currentUser
 
-            time = "$hourOfDays:$minutes"
-            date = dateFormatter.format(newDates.time)
-            additionalService = getAdditionalService()
-            officer = "Officer"
-            complaint = et_problem.text.toString().trim()
-            estimation = 0
-            component = "Component"
-            waitingApproval = false
-            totalCost = 0.0
-            status = "Booked"
-
-            val bookings = Bookings(
-                mUser!!.uid,
-                date,
-                time,
-                province,
-                city,
-                garage,
-                additionalService,
-                officer,
-                complaint,
-                estimation,
-                component,
-                waitingApproval,
-                totalCost,
-                status
+            val userDB = FirebaseDatabase.getInstance().reference
+            userDB.child(Collection.USER).child(mUser!!.uid).addListenerForSingleValueEvent(
+                object : ValueEventListener {
+                    override fun onDataChange(dataSnapshot: DataSnapshot) {
+                        if (dataSnapshot.hasChildren()){
+                            userModel = dataSnapshot.getValue(User::class.java)!!
+                            uploadToFirebse()
+                        }
+                    }
+                    override fun onCancelled(error: DatabaseError) {
+                        // Failed to read value
+                        Log.d("DATA-KU", "Failed to read value.", error.toException())
+                    }
+                }
             )
-
-            val db = FirebaseDatabase.getInstance().reference
-            db.child(Collection.BOOKINGS).push().setValue(bookings).addOnSuccessListener {
-                val toast = Toast.makeText(this, "Berhasil", Toast.LENGTH_SHORT)
-                toast.show()
-            }. addOnFailureListener {
-                val toast = Toast.makeText(this, "Gagal", Toast.LENGTH_SHORT)
-                toast.show()
-            }
 
         }
     }
 
-    private fun getAdditionalService(): String {
+    private fun uploadToFirebse(){
+        time = "$hourOfDays:$minutes"
+        date = dateFormatter.format(newDates.time)
+        additionalService = getAdditionalService()
+        officer = "Officer"
+        complaint = et_problem.text.toString().trim()
+        estimation = 0
+        component = "Component"
+        waitingApproval = false
+        totalCost = 0.0
+        status = "Booked"
 
+        val bookings = Bookings(
+            mUser!!.uid,
+            userModel.email,
+            userModel.userName,
+            date,
+            time,
+            province,
+            city,
+            garage,
+            additionalService,
+            officer,
+            complaint,
+            estimation,
+            component,
+            waitingApproval,
+            totalCost,
+            status
+        )
+
+        val db = FirebaseDatabase.getInstance().reference
+        db.child(Collection.BOOKINGS).push().setValue(bookings).addOnSuccessListener {
+            val toast = Toast.makeText(this, "Berhasil", Toast.LENGTH_LONG)
+            toast.show()
+            startActivity(Intent(this, HomeActivity::class.java))
+        }. addOnFailureListener {
+            val toast = Toast.makeText(this, "Gagal", Toast.LENGTH_SHORT)
+            toast.show()
+        }
+    }
+
+    private fun getAdditionalService(): String {
         additionalService = ""
         val data = plusServiceAdapter.getServicePlusList()
             for (i in data){
@@ -132,7 +161,6 @@ class ServiceBookingActivity : AppCompatActivity(), AdapterView.OnItemSelectedLi
                     additionalService += i.name + ","
                 }
             }
-
         return additionalService
     }
 
