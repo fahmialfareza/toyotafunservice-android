@@ -50,6 +50,17 @@
     <string name="keluhan">Keterangan/Keluhan</string>
     <string name="book">Jadwalkan</string>
     <string name="tuliskan_keluhan_anda_disini">Tuliskan keluhan Anda disini</string>
+    <string name="default_date">12/10/2019</string>
+    <string name="default_time">11:00</string>
+    <string name="total_pembayaran">Total Pembayaran (Rp)</string>
+    <string name="default_pay">540000</string>
+    <string name="officer_name">Officer Name</string>
+    <string name="petugas">Petugas</string>
+    <string name="estimasi_pengerjaan">Estimasi Pengerjaan</string>
+    <string name="menunggu_persetujuan">Menunggu Persetujuan</string>
+    <string name="total_bayar">Total Bayar</string>
+    <string name="setujui">Setujui</string>
+    <string name="hubungi_petugas">Hubungi Petugas</string>
     <string-array name="province_array">
         <item>NTB</item>
         <item>NTT</item>

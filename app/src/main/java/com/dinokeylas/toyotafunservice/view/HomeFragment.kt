@@ -10,6 +10,7 @@ import android.view.ViewGroup
 import androidx.cardview.widget.CardView
 import androidx.viewpager.widget.ViewPager
 import com.dinokeylas.toyotafunservice.R
+import com.dinokeylas.toyotafunservice.ServiceInformationActivity
 import com.dinokeylas.toyotafunservice.adapter.SliderImageAdapter
 import com.dinokeylas.toyotafunservice.model.SliderModel
 import com.viewpagerindicator.CirclePageIndicator
@@ -50,7 +51,7 @@ class HomeFragment : Fragment() {
         val cvEmergencyCall: CardView = view.findViewById(R.id.cv_emergency_call)
 
         cvBooking.setOnClickListener { startActivity(Intent(context, ServiceBookingActivity::class.java)) }
-        cvServiceInfo.setOnClickListener {  }
+        cvServiceInfo.setOnClickListener { startActivity(Intent(context, ServiceInformationActivity::class.java)) }
         cvPayService.setOnClickListener {  }
         cvServiceTutorial.setOnClickListener {  }
         cvEmergencyCall.setOnClickListener { startActivity(Intent(context, EmergencyCallActivity::class.java)) }

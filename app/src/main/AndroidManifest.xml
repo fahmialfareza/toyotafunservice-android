@@ -14,7 +14,8 @@
         android:roundIcon="@drawable/icon_tfs"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".view.ServiceBookingActivity"/>
+        <activity android:name=".ServiceInformationActivity" />
+        <activity android:name=".view.ServiceBookingActivity" />
         <activity android:name=".view.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
