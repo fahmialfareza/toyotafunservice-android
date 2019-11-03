@@ -71,6 +71,7 @@ class ServiceDetailFragment : Fragment() {
         tv_estimation.text = ""+ bookings.estimation + " Jam"
         tv_problem.text = bookings.complaint
         tv_approve.text = bookings.component
+        tv_total_pay.text = "Rp "+bookings.totalCost
     }
 
     companion object {

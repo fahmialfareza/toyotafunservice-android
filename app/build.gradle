@@ -3,6 +3,12 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'com.google.gms.google-services'
 
+repositories {
+    maven {
+        url "https://dl.bintray.com/ibm-cloud-sdks/ibm-cloud-sdk-repo"
+    }
+}
+
 android {
     compileSdkVersion 28
     defaultConfig {
@@ -18,6 +24,11 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
+    }
+    // solve duplicate classes
+    applicationVariants.all { variant ->
+        variant.getRuntimeConfiguration().exclude group: 'com.google.code.findbugs', module: 'jsr305'
+        variant.getRuntimeConfiguration().exclude group: 'com.google.code.findbugs', module: 'annotations'
     }
 }
 
@@ -51,6 +62,11 @@ dependencies {
     implementation 'de.hdodenhof:circleimageview:3.0.1'
     implementation 'com.github.bumptech.glide:glide:4.10.0'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.10.0'
+
+    implementation 'com.ibm.watson:assistant:8.0.0'
+    implementation 'com.ibm.watson:text-to-speech:8.0.0'
+    implementation 'com.ibm.watson:speech-to-text:8.0.0'
+    implementation 'com.ibm.watson.developer_cloud:android-sdk:0.5.0'
 
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'

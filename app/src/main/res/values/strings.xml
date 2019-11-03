@@ -61,14 +61,17 @@
     <string name="total_bayar">Total Bayar</string>
     <string name="setujui">Setujui</string>
     <string name="hubungi_petugas">Hubungi Petugas</string>
+    <string name="what_s_on_your_mind">Enter your query</string>
     <string-array name="province_array">
-        <item>NTB</item>
-        <item>NTT</item>
+        <item>Pilih Provinsi</item>
+        <item>Jakarta</item>
+        <item>Banten</item>
+        <item>Jawa Barat</item>
         <item>Jawa Timur</item>
         <item>Jawa Tengah</item>
-        <item>Jawa Barat</item>
     </string-array>
     <string-array name="city_array">
+        <item>Pilih Kota/Kabupaten</item>
         <item>Malang</item>
         <item>Surabaya</item>
         <item>Kediri</item>
@@ -76,10 +79,10 @@
         <item>Blitar</item>
     </string-array>
     <string-array name="location_array">
-        <item>Haha</item>
-        <item>HEHE</item>
-        <item>jjj</item>
-        <item>kkk</item>
-        <item>lll</item>
+        <item>Pilih Tempat Sevice</item>
+        <item>Toyota Sukun Jaya</item>
+        <item>Toyota Sumbersari</item>
+        <item>Auto2000 Gadang</item>
+        <item>Auto2000 Lowokwaru</item>
     </string-array>
 </resources>

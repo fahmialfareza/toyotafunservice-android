@@ -6,6 +6,7 @@ import android.view.Menu
 import android.view.MenuItem
 import androidx.fragment.app.Fragment
 import com.dinokeylas.toyotafunservice.ChatBotFragment
+import com.dinokeylas.toyotafunservice.ChatBotFragment2
 import com.dinokeylas.toyotafunservice.NotificationFragment
 import com.dinokeylas.toyotafunservice.R
 import com.google.android.material.bottomnavigation.BottomNavigationView
@@ -33,8 +34,8 @@ class HomeActivity : AppCompatActivity() {
         menuItem.isChecked = true
         when(menuItem.itemId){
             R.id.navigation_home -> showFragment(HomeFragment.newInstance())
-            R.id.navigation_notification -> showFragment(NotificationFragment.newInstance())
-            R.id.navigation_chatbot -> showFragment(ChatBotFragment.newInstance())
+//            R.id.navigation_notification -> showFragment(NotificationFragment.newInstance())
+            R.id.navigation_chatbot -> showFragment(ChatBotFragment2.newInstance())
             R.id.navigation_profile -> showFragment(ProfileFragment.newInstance())
         }
     }

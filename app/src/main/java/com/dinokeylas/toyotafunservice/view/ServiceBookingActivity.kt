@@ -144,7 +144,7 @@ class ServiceBookingActivity : AppCompatActivity(), AdapterView.OnItemSelectedLi
 
         val db = FirebaseDatabase.getInstance().reference
         db.child(Collection.BOOKINGS).push().setValue(bookings).addOnSuccessListener {
-            val toast = Toast.makeText(this, "Berhasil", Toast.LENGTH_LONG)
+            val toast = Toast.makeText(this, "Booking Berhasil Dilakukan", Toast.LENGTH_LONG)
             toast.show()
             startActivity(Intent(this, HomeActivity::class.java))
         }. addOnFailureListener {
@@ -192,8 +192,8 @@ class ServiceBookingActivity : AppCompatActivity(), AdapterView.OnItemSelectedLi
             R.id.spinner_location -> garage = item
         }
         val temp: String = ("$province $city $garage")
-        val toast = Toast.makeText(this, temp, Toast.LENGTH_SHORT)
-        toast.show()
+//        val toast = Toast.makeText(this, temp, Toast.LENGTH_SHORT)
+//        toast.show()
     }
 
     override fun onNothingSelected(p0: AdapterView<*>?) {
